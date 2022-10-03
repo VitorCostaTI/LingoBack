@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Contrato Pedido" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4e549098-6974-4f2b-8ba2-12307819be34">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="VitorDB"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="468"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="521"/>
+	<queryString language="SQL">
+		<![CDATA[select 
+	c.nome as nome,
+	c.cpf as cpf,
+	c.logradouro as logradouro,
+	c.complemento as complemento,
+	c.cidade as cidade,
+	c.uf as uf,
+	c.cep as cep,
+	d.raca as raca,
+	d.cor as cor,
+	d.nascimento as nascimento,
+	d.sexo as sexo 
+from dog d 
+join cliente c on (d.id_cliente = c.id)
+where d.id = 1]]>
+	</queryString>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nome"/>
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="logradouro" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="logradouro"/>
+		<property name="com.jaspersoft.studio.field.label" value="logradouro"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="complemento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="complemento"/>
+		<property name="com.jaspersoft.studio.field.label" value="complemento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="cidade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cidade"/>
+		<property name="com.jaspersoft.studio.field.label" value="cidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="uf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="uf"/>
+		<property name="com.jaspersoft.studio.field.label" value="uf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="cep" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cep"/>
+		<property name="com.jaspersoft.studio.field.label" value="cep"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="raca" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="raca"/>
+		<property name="com.jaspersoft.studio.field.label" value="raca"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dog"/>
+	</field>
+	<field name="cor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cor"/>
+		<property name="com.jaspersoft.studio.field.label" value="cor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dog"/>
+	</field>
+	<field name="nascimento" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="nascimento"/>
+		<property name="com.jaspersoft.studio.field.label" value="nascimento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dog"/>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sexo"/>
+		<property name="com.jaspersoft.studio.field.label" value="sexo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dog"/>
+	</field>
+	<group name="Group1">
+		<groupHeader>
+			<band height="742">
+				<textField isBlankWhenNull="false">
+					<reportElement x="7" y="46" width="529" height="73" uuid="6a82236c-7597-4b3f-866a-f3b927aaa8c2"/>
+					<textElement textAlignment="Justified" markup="html">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b> LINGO LINGO KENNEL, </b>  empresa jurídica de direito privado,  inscrita no CNPJ sob o n° <b> 37.723.100/0001-56</b>, com sede na <b>Rua João de Barro, h5, Condominio Monte Real Limeira/SP - CEP 13481-145</b> e de outro lado <b>" +($F{nome} == null ? new String("") : $F{nome}) +"</b> pessoa  física  direito privado, inscrita no CPF sob <b>"+($F{cpf} == null ? new String("") : $F{cpf})  +"</b>, com endereço domiciliado na <b> " + " " + $F{logradouro} + ", " + $F{complemento} + " " + $F{cidade} + "/" + $F{uf} + " - CEP "+ $F{cep} + "</b> concordam através deste documento as seguintes condições"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="120" width="274" height="20" uuid="18a42cdd-e7ae-4a61-817e-2af48c3df639"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+						<font size="9" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b> CLÁUSULA PRIMEIRA – ANIMAL</b>"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="7" y="140" width="528" height="31" uuid="bc7f23ea-5270-4ce5-a5ac-5cc666eccd33"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["O presente contrato tem como OBJETO, o cão filhote da raça " + $F{raca}+ ", da cor " + $F{cor}  +",  nascido em " + new SimpleDateFormat("dd/MM/yyyy").format($F{nascimento}) + " e com identificação de sexo " + $F{sexo}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="0" y="10" width="555" height="20" uuid="99ba7d72-e304-4254-992a-3c98ab581fec"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>CONTRATO DE VENDA DE DOG DA RAÇA:   "+$F{raca}+ "</b>"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="179" width="279" height="20" uuid="2228b7a0-b1e5-4736-9559-3acc72273486"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+						<font size="9" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b> CLÁUSULA SEGUNDA – GARANTIA DE SAUDE</b>"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="7" y="199" width="533" height="31" uuid="8175da65-777c-4c8e-be2d-dc7d1a51a8f1"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["O <b>VENDEDOR</b> entregará ao <b>COMPRADOR</b> a posse do mesmo,  juntamente com a carteira de vacinação em dia do animal devidamente assinada pelo veterinário responsável. "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="238" width="279" height="20" uuid="2ce06e72-9a4b-49a0-b2fe-a5581730c8ad"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+						<font size="9" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b> CLÁUSULA TERCEIRA – CUIDADOS COM O ANIMAL</b>"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="7" y="258" width="533" height="31" uuid="af1d3e88-fd14-4074-986e-58b996b13ba3"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["O <b>COMPRADOR</b> fica responsável pela vacinação do animal nas datas previstas, bem como por não o levar a lugares públicos ou de alto contágio, pelo período de até 60 dias após a última dose. "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="297" width="279" height="20" uuid="88e85830-7c32-4692-9805-8cd6786db912"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+						<font size="9" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b> CLÁUSULA QUARTA – CASO DE ÓBITO</b>"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="7" y="317" width="533" height="42" uuid="e15641b0-4f48-46e6-a5d2-6ff8ed4bd733"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Em caso de óbito do cão por motivo de doença viral no prazo de até 60 dias após sua entrega ao <b>COMPRADOR</b> e comprovada pelo com laudo de 'Causa Mortis', assinado pelo veterinário o <b>VENDEDOR</b> deverá ressarcir o valor do animal integralmente ao <b>COMPRADOR</b> "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="7" y="367" width="302" height="20" uuid="776a47c5-1694-4d3d-898b-47d41f2b051e"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+						<font size="9" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b> CLÁUSULA QUINTA – RESPONSABILIDADE DO VENDEDOR</b>"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="7" y="387" width="538" height="31" uuid="2fe3fb5a-2466-425d-850a-735e4cc1c97d"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" O <b>VENDEDOR</b> não se responsabilizará por óbito do animal que não seja decorrente de doença viral ou genética, tendo sido causados por negligência do <b>COMPRADOR</b>."]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="8" y="426" width="302" height="20" uuid="a036606b-c61a-4905-ae56-d8fc507fa8fe"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+						<font size="9" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b> CLÁUSULA SEXTA –  PAGAMENTO </b>"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="8" y="446" width="538" height="31" uuid="b58896f8-d496-4f9e-965d-e7d6138651b0"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" O <b>COMPRADOR</b> terá como a obrigação o pagamento no valor de <font color = 'red'> VALOR </font> através do método  <font color = 'red'> METODO </font>  </b>."]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="8" y="485" width="302" height="20" uuid="2e5a95e9-79b7-40e6-9a29-a58e594ad877"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+						<font size="9" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b> CLÁUSULA SETIMA –  VALIDADE </b>"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="8" y="505" width="538" height="31" uuid="c98df155-5df2-4c7a-aef0-220631b1257c"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle" markup="html">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA["O presente contrato passa a valer a partir da assinatura pelas partes..."]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="170" y="554" width="120" height="21" uuid="732e5bc2-36e7-402a-b048-cae9db92a1f2"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[Limeira, SP, Brasil -]]></text>
+				</staticText>
+				<textField pattern=" d MMMM, yyyy">
+					<reportElement x="290" y="554" width="100" height="20" uuid="0dd2aeca-3fbd-47f0-830d-fa135265bd4c"/>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="146" y="617" width="269" height="1" uuid="3afbfda5-35b5-498a-8bdf-61f79e997224"/>
+				</line>
+				<textField isBlankWhenNull="false">
+					<reportElement x="146" y="619" width="268" height="29" isRemoveLineWhenBlank="true" uuid="b364e9ef-21e4-42cb-8198-3e304aef52b6"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="html"/>
+					<textFieldExpression><![CDATA["LINGO LINGO KENNEL<br><b>VENDEDOR</b>"]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="145" y="698" width="269" height="1" uuid="3b9888f3-9fbd-4d05-8b91-96e370d3adcc"/>
+				</line>
+				<textField isBlankWhenNull="true">
+					<reportElement x="151" y="700" width="250" height="35" isRemoveLineWhenBlank="true" uuid="8b1b1905-062c-46c1-b88b-1b786ea73037"/>
+					<textElement textAlignment="Center" markup="html"/>
+					<textFieldExpression><![CDATA["<b>"+($F{nome} == null ? new String("") : $F{nome}) +"</b><br><b>COMPRADOR(A)</b>"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Group5"/>
+	<pageFooter>
+		<band height="20">
+			<textField>
+				<reportElement x="450" y="0" width="100" height="20" uuid="e3cafed9-e449-4e5c-8369-6ccc291a7409"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy ">
+				<reportElement x="5" y="0" width="200" height="20" uuid="9044393c-393b-426f-9da5-1ca598bba155"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
