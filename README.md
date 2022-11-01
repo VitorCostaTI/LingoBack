@@ -13,7 +13,7 @@ Recomendo testa-la [Postman](https://web.postman.co/home), foi o software que us
 
 Esta aplicação está em constante mudança então lembre-se de mante-la sempre atualizada e seguir as dicas aqui disponiveis
 
-* Obs: O front End deste projeto está disponivel outro [Repositório]([https://web.postman.co/home](https://github.com/VitorCostaTI/LingoFront)) de meu perfil
+* Obs: O front End deste projeto está disponivel outro [Repositório]([https://web.postman.co/home](https://github.com/VitorCostaTI/LingoFront) de meu perfil
 
 Obrigado .\
 Vitor Costa TI
