@@ -4,7 +4,9 @@ Este Projeto foi criado com [Spring Boot](https://start.spring.io/).
 
 ## Iniciando Scripts
 
-Você poderá ultiliza-lo apenas dando play na IDE de desenvolvimento IntelliJ, Configure o build da maneira que achar melhor
+* Você precisará configurar um Banco de Dados PostgreSQL em 'src/main/application.properties'
+
+* Você poderá ultiliza-lo apenas dando play na IDE de desenvolvimento IntelliJ, Configure o build da maneira que achar melhor
 
 Inicia Projeto pelo modo de desenvolvimento.\
 Recomendo testa-la [Postman](https://web.postman.co/home), foi o software que usei para validar os EndPoints.
