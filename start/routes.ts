@@ -9,3 +9,9 @@ Route.get('/', async () => {
     Desenvolvedor: 'Vitor Costa'
   }
 });
+
+Route.group(() => {
+  // Route Usuarios
+
+  Route.post('usuarios', 'UsuariosController.post')
+}).prefix('/api')
