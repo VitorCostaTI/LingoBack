@@ -20,6 +20,10 @@ Este projeto é desenvolvido com [AdonisJS](https://github.com/adonisjs) versão
 
 * Todos os dados aqui apresentados são meramente ilustrativos.
 
+## Dicas.
+
+* Para melhor experiencia instale em seu Visual Studio Code a extenção SQLite Viewer, com ela é possivel visualizar as tabelas do banco de dados local em tempo real
+
 ---
 
 Obrigado .\
