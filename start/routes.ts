@@ -1,9 +1,13 @@
 import Route from '@ioc:Adonis/Core/Route'
 
-// Saudações
+/*
+|--------------------------------------------------------------------------
+| Saudações
+|--------------------------------------------------------------------------
+*/
 
 Route.get('/', async () => {
-  return { 
+  return {
     Welcome: 'Seja bem vindo ao servidor back-end Lingo Kennel',
     Tecnologia: 'AdonisJS - TypeScript',
     DevOPS: 'Docker',
@@ -12,23 +16,28 @@ Route.get('/', async () => {
   }
 });
 
-// Autenticação
+/*
+|--------------------------------------------------------------------------
+| Autenticação
+|--------------------------------------------------------------------------
+*/
 
-Route.post('login', async ({ auth, request, response }) => {
-  const email = request.input('email')
-  const password = request.input('password')
+Route.post('login', 'UsuariosController.login');
 
-  try {
-    const token = await auth.use('api').attempt(email, password)
-    return token
-  } catch {
-    return response.unauthorized('Credenciais não autorizadas')
-  }
-});
+Route.get('usuario/teste', 'UsuariosController.teste').middleware('auth');
+
+Route.post('logout', 'UsuariosController.logout');
+
+
+/*
+|--------------------------------------------------------------------------
+| Funcionalidades
+|--------------------------------------------------------------------------
+*/
 
 Route.group(() => {
 
-  // Route Usuarios
+  /**** Usuarios ****/ 
 
   Route.post('usuarios', 'UsuariosController.post')
 }).prefix('/api')
