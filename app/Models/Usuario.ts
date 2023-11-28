@@ -4,28 +4,58 @@ import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
 
 export default class Usuario extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id: number;
 
   @column()
-  public email: string
+  public colaborador: string;
 
   @column()
-  public telefone1: string
+  public setor: string;
 
   @column()
-  public telefone2: string
+  public email: string;
+
+  @column()
+  public telefone1: string;
+
+  @column()
+  public telefone2: string;
+
+  @column()
+  public cep: string;
+
+  @column()
+  public logradouro: string;
+
+  @column()
+  public bairro: string;
+
+  @column()
+  public cidade: string;
+
+  @column()
+  public estado: string;
+
+  @column()
+  public complemento: string;
+
+  @column()
+  public emergencia: string;
+
+  @column()
+  public documento: string;
 
   @column({ serializeAs: null })
-  public password: string
+  public password: string;
 
   @column()
-  public rememberMeToken: string | null
+  public rememberMeToken: string | null;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  public updatedAt: DateTime;
 
   @beforeSave()
   public static async hashPassword (usuario: Usuario) {
