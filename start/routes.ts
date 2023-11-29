@@ -40,6 +40,7 @@ Route.group(() => {
   
   /**** Usuarios ****/ 
   Route.get('usuarios', 'UsuariosController.get')
+  Route.get('usuarios/:id', 'UsuariosController.getID')
   Route.post('usuarios', 'UsuariosController.post');
   
 }).prefix('/api').middleware('auth')

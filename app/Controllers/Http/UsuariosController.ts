@@ -45,11 +45,14 @@ export default class UsuariosController {
 
     public validationOptionsDocuments = {
         types: ['pdf'],
-        size: '50mb'
+        size: '2mb'
     }
 
     public async post({request, response}: HttpContextContract){
         const body = request.body();
+
+        /**** Anexo de Arquivo ****/
+
         const image = request.file('image', this.validationOptions);
         const rg = request.file('rg', this.validationOptionsDocuments);
         const titulo_eleitor = request.file('titulo_eleitor', this.validationOptionsDocuments);
@@ -65,65 +68,64 @@ export default class UsuariosController {
                 name: imageName
             });
 
-            body.image = imageName
+            body.image = imageName;
         }
-          
+
         if(rg){
             const rgName = `${uuidv4()}.${rg.extname}`;
             await rg.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: rgName
             });
 
-            body.rg = rgName
+            body.rg = rgName;
         }
-          
+
         if(titulo_eleitor){
             const titulo_eleitorName = `${uuidv4()}.${titulo_eleitor.extname}`;
             await titulo_eleitor.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: titulo_eleitorName
             });
 
-            body.titulo_eleitor = titulo_eleitorName
+            body.titulo_eleitor = titulo_eleitorName;
         }
-          
+
         if(militar){
             const militarName = `${uuidv4()}.${militar.extname}`;
             await militar.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: militarName
             });
 
-            body.militar = militarName
+            body.militar = militarName;
         }
-          
+
         if(nascimento){
             const nascimentoName = `${uuidv4()}.${nascimento.extname}`;
             await nascimento.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: nascimentoName
             });
 
-            body.nascimento = nascimentoName
+            body.nascimento = nascimentoName;
         }
-          
+
         if(endereco){
             const enderecoName = `${uuidv4()}.${endereco.extname}`;
             await endereco.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: enderecoName
             });
 
-            body.endereco = enderecoName
+            body.endereco = enderecoName;
         }
-          
+
         if(carteira_trabalho){
             const carteira_trabalhoName = `${uuidv4()}.${carteira_trabalho.extname}`;
             await carteira_trabalho.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: carteira_trabalhoName
-            });
+            }); 
 
-            body.carteira_trabalho = carteira_trabalhoName
-        }// else {
-        //     response.status(500)
-        //     return {"erro": "Falha ao cadastrar arquivo!"}
-        // }
+            body.carteira_trabalho = carteira_trabalhoName;
+        }
+
+        /**** Create Usuário ****/
 
         await Usuario.create(body);
 
@@ -137,5 +139,23 @@ export default class UsuariosController {
     public async get({response}: HttpContextContract){
         response.status(200);
         return Usuario.all();
+    }
+
+    public async getID({params, response}: HttpContextContract){
+        const usuario =  Usuario.findOrFail(params.id);
+
+        response.status(200);
+        return usuario;
+    }
+
+    public async delete({params}: HttpContextContract){
+        const usuario = await Usuario.findOrFail(params.id);
+
+        await usuario.delete();
+
+        return{
+           msg: "Usuário cadastrado com sucesso",
+           usuario
+        };
     }
 }
