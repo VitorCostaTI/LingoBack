@@ -3,6 +3,9 @@ import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
 
 export default class Usuario extends BaseModel {
+
+  /**** Ficha de Cadastro ****/
+
   @column({ isPrimary: true })
   public id: number;
 
@@ -50,6 +53,31 @@ export default class Usuario extends BaseModel {
 
   @column()
   public rememberMeToken: string | null;
+
+  /**** Upload de Arquivos ****/
+
+  @column()
+  public image: string;
+
+  @column()
+  public rg: string;
+
+  @column()
+  public titulo_eleitor: string;
+
+  @column()
+  public militar: string;
+
+  @column()
+  public nascimento: string;
+
+  @column()
+  public endereco: string;
+
+  @column()
+  public carteira_trabalho: string;
+
+  /**** TimeStamps ****/
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

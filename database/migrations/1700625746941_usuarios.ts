@@ -5,6 +5,9 @@ export default class extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
+
+      /**** Ficha de Cadastro ****/
+
       table.increments('id').primary();
       table.string('colaborador', 255).notNullable();
       table.string('setor', 255).notNullable();
@@ -21,6 +24,16 @@ export default class extends BaseSchema {
       table.string('documento', 255).notNullable();
       table.string('password', 180).notNullable();
       table.string('remember_me_token').nullable();
+
+      /**** Upload de Arquivos ****/
+
+      table.string('image');
+      table.string('rg');
+      table.string('titulo_eleitor');
+      table.string('militar');
+      table.string('nascimento');
+      table.string('endereco');
+      table.string('carteira_trabalho');
 
       /**
        * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL

@@ -35,9 +35,11 @@ Route.post('logout', 'UsuariosController.logout');
 |--------------------------------------------------------------------------
 */
 
+
 Route.group(() => {
-
+  
   /**** Usuarios ****/ 
-
-  Route.post('usuarios', 'UsuariosController.post')
-}).prefix('/api')
+  Route.get('usuarios', 'UsuariosController.get')
+  Route.post('usuarios', 'UsuariosController.post');
+  
+}).prefix('/api').middleware('auth')
