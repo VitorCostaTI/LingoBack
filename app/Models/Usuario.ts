@@ -43,6 +43,9 @@ export default class Usuario extends BaseModel {
   public complemento: string;
 
   @column()
+  public localizacao: string;
+
+  @column()
   public emergencia: string;
 
   @column()

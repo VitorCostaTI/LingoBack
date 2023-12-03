@@ -20,6 +20,7 @@ export default class extends BaseSchema {
       table.string('cidade', 255).notNullable();
       table.string('estado', 255).notNullable();
       table.string('complemento', 255);
+      table.string('localizacao', 255).notNullable();
       table.string('emergencia', 255);
       table.string('documento', 255).notNullable();
       table.string('password', 180).notNullable();
