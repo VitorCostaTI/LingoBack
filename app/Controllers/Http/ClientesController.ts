@@ -10,7 +10,7 @@ export default class ClientesController {
         response.status(201);
         return{
             msg: "Cliente cadastrado com sucesso!",
-            Cliente
+            cliente: body
         }
     }
 
@@ -20,10 +20,8 @@ export default class ClientesController {
     }
 
     public async getID({params, response}: HttpContextContract){
-        const cliente =  Cliente.findOrFail(params.id);
-
         response.status(200);
-        return cliente
+        return Cliente.findOrFail(params.id);
     }
 
     public async update({params, request, response}: HttpContextContract){
@@ -41,13 +39,23 @@ export default class ClientesController {
         (await cliente).cidade = body.cidade;
         (await cliente).estado = body.estado;
         (await cliente).complemento = body.complemento;
+
+        (await cliente).save();
+
+        response.status(201);
+
+        return{
+            msg: "Cliente atualizado com sucesso!",
+            cliente: body
+        }
     }
 
-    public async delete({request, params, response}: HttpContextContract){
+    public async delete({params, response}: HttpContextContract){
         const cliente = Cliente.findOrFail(params.id);
 
         (await cliente).delete();
 
+        response.status(201);
         return{
             msg: "Cliente deletado com sucesso!",
             cliente

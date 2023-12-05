@@ -144,10 +144,8 @@ export default class UsuariosController {
     }
 
     public async getID({params, response}: HttpContextContract){
-        const usuario =  Usuario.findOrFail(params.id);
-
         response.status(200);
-        return usuario;
+        return Usuario.findOrFail(params.id);
     }
 
     public async update({params, response, request}: HttpContextContract){
@@ -245,8 +243,13 @@ export default class UsuariosController {
             body.carteira_trabalho = carteira_trabalhoName;
         }
 
+        (await usuario).save();
         response.status(201);
-        return usuario;
+
+        return{
+            msg: "Usuario atualizado com sucesso!",
+            usuario: body
+        }
     }
 
     public async delete({params}: HttpContextContract){
