@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       /**** Ficha de Cadastro ****/
 
       table.increments('id').primary();
+      
       table.string('colaborador', 255).notNullable();
       table.string('setor', 255).notNullable();
       table.string('email', 255).notNullable().unique();
