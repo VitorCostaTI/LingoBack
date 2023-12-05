@@ -38,6 +38,13 @@ Route.post('logout', 'UsuariosController.logout');
 
 Route.group(() => {
   
+  /**** Clientes ****/ 
+  Route.get('clientes', 'ClientesController.get');
+  Route.get('clientes/:id', 'ClientesController.getID');
+  Route.post('clientes', 'ClientesController.post');
+  Route.put('clientes', 'ClientesController.update');
+  Route.delete('clientes', 'ClientesController.delete');
+
   /**** Usuarios ****/ 
   Route.get('usuarios', 'UsuariosController.get');
   Route.get('usuarios/:id', 'UsuariosController.getID');
