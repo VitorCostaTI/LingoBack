@@ -1,4 +1,4 @@
-![img](/capa/dashboard.png "Capa Projeto")
+![img](/resources/dashboard.png "Capa Projeto")
 
 # Servidor LingoBack
 

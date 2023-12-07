@@ -66,4 +66,4 @@ Route.group(() => {
   Route.put('usuarios', 'UsuariosController.update');
   Route.delete('usuarios', 'UsuariosController.delete');
   
-}).prefix('/api').middleware('auth')
+}).prefix('/api').middleware('auth');
