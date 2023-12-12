@@ -33,11 +33,13 @@ export default class PetsController {
         (await pet).raca = body.raca
         
         response.status(201);
+        (await pet).save();
     }
 
     public async delete({response, params}: HttpContextContract){
         const pet = Pet.findOrFail(params.id);
 
+        response.status(201)
         return{
             msg: "Pet deletado com sucesso!",
             pet
