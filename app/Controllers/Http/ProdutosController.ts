@@ -2,29 +2,29 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Produto from 'App/Models/Produto';
 
 export default class ProdutosController {
-    public async post({request, response}: HttpContextContract){
+    public async post({ request, response }: HttpContextContract) {
         const body = request.body();
 
         await Produto.create(body);
 
         response.status(201);
-        return{
+        return {
             msg: "Produto cadastrado com sucesso!",
             produto: body
         }
     }
 
-    public async get({response}: HttpContextContract){
+    public async get({ response }: HttpContextContract) {
         response.status(200);
         return Produto.all();
     }
 
-    public async getID({response, params}: HttpContextContract){
+    public async getID({ response, params }: HttpContextContract) {
         response.status(200);
         return Produto.findOrFail(params.id);
     }
 
-    public async update({response, params, request}: HttpContextContract){
+    public async update({ response, params, request }: HttpContextContract) {
         const produto = Produto.findOrFail(params.id);
         const body = request.body();
 
@@ -36,21 +36,21 @@ export default class ProdutosController {
         (await produto).codigo_produto = body.codigo_produto;
 
         response.status(201);
-        
-        return{
+
+        return {
             msg: "Produto cadastrado com sucesso",
             produto: body
         }
     }
 
-    public async delete({response, params}: HttpContextContract){
+    public async delete({ response, params }: HttpContextContract) {
         const produto = Produto.findOrFail(params.id);
 
         (await produto).delete();
 
         response.status(201);
 
-        return{
+        return {
             msg: "Produto deletado com sucesso!",
             produto
         }

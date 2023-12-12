@@ -1,13 +1,13 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Usuario from 'App/Models/Usuario';
-import Application  from "@ioc:Adonis/Core/Application";
-import {v4 as uuidv4} from 'uuid'
+import Application from "@ioc:Adonis/Core/Application";
+import { v4 as uuidv4 } from 'uuid'
 
 export default class UsuariosController {
 
-    /**** Autenticação de usuario ****/ 
+    /**** Autenticação de usuario ****/
 
-    public async login({auth, request, response}){
+    public async login({ auth, request, response }) {
         const email = request.input('email')
         const password = request.input('password')
 
@@ -21,22 +21,22 @@ export default class UsuariosController {
         }
     }
 
-    public async logout({auth}){
+    public async logout({ auth }) {
         await auth.use('api').revoke()
         return {
-          revoked: "Usuario deslogado com sucesso"
+            revoked: "Usuario deslogado com sucesso"
         }
     }
 
-    /**** Teste das funcionalidades do middleware ****/ 
-    
-    public async teste({auth}){
+    /**** Teste das funcionalidades do middleware ****/
+
+    public async teste({ auth }) {
         return {
             Welcome: `${auth.user!.email}`,
         }
     }
 
-    /**** Criação de usuario ****/ 
+    /**** Criação de usuario ****/
 
     public validationOptions = {
         types: ['image'],
@@ -48,7 +48,7 @@ export default class UsuariosController {
         size: '2mb'
     }
 
-    public async post({request, response}: HttpContextContract){
+    public async post({ request, response }: HttpContextContract) {
         const body = request.body();
 
         body.localizacao = body.bairro + ", " + body.cidade + " - " + body.estado
@@ -63,8 +63,8 @@ export default class UsuariosController {
         const endereco = request.file('endereco', this.validationOptionsDocuments);
         const carteira_trabalho = request.file('carteira_trabalho', this.validationOptionsDocuments);
 
-        
-        if(image){
+
+        if (image) {
             const imageName = `${uuidv4()}.${image.extname}`;
             await image.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: imageName
@@ -73,7 +73,7 @@ export default class UsuariosController {
             body.image = imageName;
         }
 
-        if(rg){
+        if (rg) {
             const rgName = `${uuidv4()}.${rg.extname}`;
             await rg.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: rgName
@@ -82,7 +82,7 @@ export default class UsuariosController {
             body.rg = rgName;
         }
 
-        if(titulo_eleitor){
+        if (titulo_eleitor) {
             const titulo_eleitorName = `${uuidv4()}.${titulo_eleitor.extname}`;
             await titulo_eleitor.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: titulo_eleitorName
@@ -91,7 +91,7 @@ export default class UsuariosController {
             body.titulo_eleitor = titulo_eleitorName;
         }
 
-        if(militar){
+        if (militar) {
             const militarName = `${uuidv4()}.${militar.extname}`;
             await militar.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: militarName
@@ -100,7 +100,7 @@ export default class UsuariosController {
             body.militar = militarName;
         }
 
-        if(nascimento){
+        if (nascimento) {
             const nascimentoName = `${uuidv4()}.${nascimento.extname}`;
             await nascimento.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: nascimentoName
@@ -109,7 +109,7 @@ export default class UsuariosController {
             body.nascimento = nascimentoName;
         }
 
-        if(endereco){
+        if (endereco) {
             const enderecoName = `${uuidv4()}.${endereco.extname}`;
             await endereco.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: enderecoName
@@ -118,11 +118,11 @@ export default class UsuariosController {
             body.endereco = enderecoName;
         }
 
-        if(carteira_trabalho){
+        if (carteira_trabalho) {
             const carteira_trabalhoName = `${uuidv4()}.${carteira_trabalho.extname}`;
             await carteira_trabalho.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: carteira_trabalhoName
-            }); 
+            });
 
             body.carteira_trabalho = carteira_trabalhoName;
         }
@@ -132,28 +132,28 @@ export default class UsuariosController {
         await Usuario.create(body);
 
         response.status(201);
-        return{
+        return {
             msg: "Usuario adicionado com sucesso",
             produto: body
         }
     }
 
-    public async get({response}: HttpContextContract){
+    public async get({ response }: HttpContextContract) {
         response.status(200);
         return Usuario.all();
     }
 
-    public async getID({params, response}: HttpContextContract){
+    public async getID({ params, response }: HttpContextContract) {
         response.status(200);
         return Usuario.findOrFail(params.id);
     }
 
-    public async update({params, response, request}: HttpContextContract){
-        const usuario =  Usuario.findOrFail(params.id);
+    public async update({ params, response, request }: HttpContextContract) {
+        const usuario = Usuario.findOrFail(params.id);
         const body = request.body();
 
         /**** Ficha Cadastral ****/
- 
+
         (await usuario).colaborador = body.colaborador;
         (await usuario).setor = body.setor;
         (await usuario).email = body.email;
@@ -165,7 +165,7 @@ export default class UsuariosController {
         (await usuario).cidade = body.cidade;
         (await usuario).estado = body.estado;
         (await usuario).complemento = body.complemento;
-        (await usuario).localizacao = body.bairro + ", " + body.cidade + " - " + body.estado;     
+        (await usuario).localizacao = body.bairro + ", " + body.cidade + " - " + body.estado;
         (await usuario).emergencia = body.emergencia;
         (await usuario).documento = body.documento;
 
@@ -179,8 +179,8 @@ export default class UsuariosController {
         const endereco = request.file('endereco', this.validationOptionsDocuments);
         const carteira_trabalho = request.file('carteira_trabalho', this.validationOptionsDocuments);
 
-        
-        if(image){
+
+        if (image) {
             const imageName = `${uuidv4()}.${image.extname}`;
             await image.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: imageName
@@ -189,7 +189,7 @@ export default class UsuariosController {
             body.image = imageName;
         }
 
-        if(rg){
+        if (rg) {
             const rgName = `${uuidv4()}.${rg.extname}`;
             await rg.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: rgName
@@ -198,7 +198,7 @@ export default class UsuariosController {
             body.rg = rgName;
         }
 
-        if(titulo_eleitor){
+        if (titulo_eleitor) {
             const titulo_eleitorName = `${uuidv4()}.${titulo_eleitor.extname}`;
             await titulo_eleitor.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: titulo_eleitorName
@@ -207,7 +207,7 @@ export default class UsuariosController {
             body.titulo_eleitor = titulo_eleitorName;
         }
 
-        if(militar){
+        if (militar) {
             const militarName = `${uuidv4()}.${militar.extname}`;
             await militar.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: militarName
@@ -216,7 +216,7 @@ export default class UsuariosController {
             body.militar = militarName;
         }
 
-        if(nascimento){
+        if (nascimento) {
             const nascimentoName = `${uuidv4()}.${nascimento.extname}`;
             await nascimento.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: nascimentoName
@@ -225,7 +225,7 @@ export default class UsuariosController {
             body.nascimento = nascimentoName;
         }
 
-        if(endereco){
+        if (endereco) {
             const enderecoName = `${uuidv4()}.${endereco.extname}`;
             await endereco.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: enderecoName
@@ -234,11 +234,11 @@ export default class UsuariosController {
             body.endereco = enderecoName;
         }
 
-        if(carteira_trabalho){
+        if (carteira_trabalho) {
             const carteira_trabalhoName = `${uuidv4()}.${carteira_trabalho.extname}`;
             await carteira_trabalho.move(Application.tmpPath(`uploads/${body.colaborador}`), {
                 name: carteira_trabalhoName
-            }); 
+            });
 
             body.carteira_trabalho = carteira_trabalhoName;
         }
@@ -246,20 +246,20 @@ export default class UsuariosController {
         (await usuario).save();
         response.status(201);
 
-        return{
+        return {
             msg: "Usuario atualizado com sucesso!",
             usuario: body
         }
     }
 
-    public async delete({params}: HttpContextContract){
+    public async delete({ params }: HttpContextContract) {
         const usuario = await Usuario.findOrFail(params.id);
 
         await usuario.delete();
 
-        return{
-           msg: "Usuário cadastrado com sucesso",
-           usuario
+        return {
+            msg: "Usuário cadastrado com sucesso",
+            usuario
         };
     }
 }

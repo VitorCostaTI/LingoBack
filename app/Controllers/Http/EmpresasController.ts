@@ -2,29 +2,29 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Empresa from 'App/Models/Empresa';
 
 export default class EmpresasController {
-    public async post({request, response}: HttpContextContract){
+    public async post({ request, response }: HttpContextContract) {
         const body = request.body();
 
         await Empresa.create(body);
 
         response.status(201)
-        return{
+        return {
             msg: "Empresa criada com sucesso!",
             empresa: body
         }
     }
 
-    public async get({response}: HttpContextContract){
+    public async get({ response }: HttpContextContract) {
         response.status(200);
         return Empresa.all();
     }
 
-    public async getID({response, params}: HttpContextContract){
+    public async getID({ response, params }: HttpContextContract) {
         response.status(200);
         return Empresa.findOrFail(params.id);
     }
 
-    public async update({response, request, params}: HttpContextContract){
+    public async update({ response, request, params }: HttpContextContract) {
         const empresa = Empresa.findOrFail(params.id);
         const body = request.body();
 
@@ -35,20 +35,20 @@ export default class EmpresasController {
         (await empresa).contato = body.contato;
 
         response.status(201);
-        return{
+        return {
             msg: "Empresa atualizada com sucesso!",
             empresa: body
         }
     }
 
-    public async delete({response, params}: HttpContextContract){
+    public async delete({ response, params }: HttpContextContract) {
         const empresa = Empresa.findOrFail(params.id);
 
         (await empresa).delete();
 
         response.status(201);
 
-        return{
+        return {
             msg: "Empresa Atualizada com sucesso",
             empresa
         }
