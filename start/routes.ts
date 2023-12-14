@@ -38,6 +38,9 @@ Route.post('logout', 'UsuariosController.logout');
 
 Route.group(() => {
   
+  /**** Auditoria ****/ 
+  Route.get('auditoria', 'AuditoriasController.get');
+
   /**** Clientes ****/ 
   Route.get('clientes', 'ClientesController.get');
   Route.get('clientes/:id', 'ClientesController.getID');
@@ -58,6 +61,13 @@ Route.group(() => {
   Route.post('produtos', 'ProdutosController.post');
   Route.put('produtos', 'ProdutosController.update');
   Route.delete('produtos', 'ProdutosController.delete');
+
+  /**** Pets ****/ 
+  Route.get('pets', 'PetsController.get');
+  Route.get('pets/:id', 'PetsController.getID');
+  Route.post('pets', 'PetsController.post');
+  Route.put('pets', 'PetsController.update');
+  Route.delete('pets', 'PetsController.delete');
 
   /**** Usuarios ****/ 
   Route.get('usuarios', 'UsuariosController.get');
