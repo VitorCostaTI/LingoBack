@@ -7,9 +7,9 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
-      table.string('colaborador')
-      table.string('setor')
-      table.string('atividade')
+      table.string('colaborador').notNullable();
+      table.string('setor').notNullable();
+      table.string('atividade').notNullable();
       table.timestamp('hora', { useTz: true })
 
       /**

@@ -1,9 +1,18 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Auditoria from 'App/Models/Auditoria';
 import Empresa from 'App/Models/Empresa';
 
 export default class EmpresasController {
-    public async post({ request, response }: HttpContextContract) {
+    public async post({ request, response, auth }: HttpContextContract) {
         const body = request.body();
+
+        const auditoria = {
+            colaborador: `${auth.user!.colaborador}`,
+            setor: `${auth.user!.setor}`,
+            atividade: `Cadastrou Empresa: ${body.razao_social}`,
+        };
+
+        await Auditoria.create(auditoria);
 
         await Empresa.create(body);
 
@@ -14,18 +23,46 @@ export default class EmpresasController {
         }
     }
 
-    public async get({ response }: HttpContextContract) {
+    public async get({ response, auth }: HttpContextContract) {
+
+        const auditoria = {
+            colaborador: `${auth.user!.colaborador}`,
+            setor: `${auth.user!.setor}`,
+            atividade: 'Cadastro Empresas',
+        };
+
+        await Auditoria.create(auditoria);
+
         response.status(200);
         return Empresa.all();
     }
 
-    public async getID({ response, params }: HttpContextContract) {
+    public async getID({ response, params, auth }: HttpContextContract) {
+        const empresa = Empresa.findOrFail(params.id);
+
+        const auditoria = {
+            colaborador: `${auth.user!.colaborador}`,
+            setor: `${auth.user!.setor}`,
+            atividade: `Acesso Empresa: ${(await empresa).razao_social}`,
+        };
+
+        await Auditoria.create(auditoria);
+
         response.status(200);
-        return Empresa.findOrFail(params.id);
+        return empresa;
     }
 
-    public async update({ response, request, params }: HttpContextContract) {
+    public async update({ response, request, params, auth }: HttpContextContract) {
         const empresa = Empresa.findOrFail(params.id);
+
+        const auditoria = {
+            colaborador: `${auth.user!.colaborador}`,
+            setor: `${auth.user!.setor}`,
+            atividade: `Atualizou Empresa: ${(await empresa).razao_social}`,
+        };
+
+        await Auditoria.create(auditoria);
+
         const body = request.body();
 
         (await empresa).razao_social = body.razao_social;
@@ -41,15 +78,23 @@ export default class EmpresasController {
         }
     }
 
-    public async delete({ response, params }: HttpContextContract) {
+    public async delete({ response, params, auth }: HttpContextContract) {
         const empresa = Empresa.findOrFail(params.id);
+
+        const auditoria = {
+            colaborador: `${auth.user!.colaborador}`,
+            setor: `${auth.user!.setor}`,
+            atividade: `Deletou Empresa: ${(await empresa).razao_social}`,
+        };
+
+        await Auditoria.create(auditoria);
 
         (await empresa).delete();
 
         response.status(201);
 
         return {
-            msg: "Empresa Atualizada com sucesso",
+            msg: "Empresa deletada com sucesso!",
             empresa
         }
     }
