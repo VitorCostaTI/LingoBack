@@ -12,6 +12,9 @@ export default class Produto extends BaseModel {
   public fornecedor: string;
 
   @column()
+  public categoria: string;
+
+  @column()
   public preco: string;
 
   @column()

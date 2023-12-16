@@ -64,6 +64,7 @@ export default class ProdutosController {
         const body = request.body();
 
         (await produto).produto = body.produto;
+        (await produto).categoria = body.categoria;
         (await produto).fornecedor = body.fornecedor;
         (await produto).preco = body.preco;
         (await produto).investimento = body.investimento;

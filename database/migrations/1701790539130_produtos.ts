@@ -8,6 +8,7 @@ export default class extends BaseSchema {
       table.increments('id');
 
       table.string('produto').notNullable().unique();
+      table.string('categoria').notNullable();
       table.string('fornecedor').notNullable();
       table.string('preco').notNullable();
       table.string('investimento').notNullable();
