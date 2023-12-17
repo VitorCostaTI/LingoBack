@@ -48,6 +48,9 @@ Route.group(() => {
   Route.put('clientes', 'ClientesController.update');
   Route.delete('clientes', 'ClientesController.delete');
 
+  /**** Estoque ****/
+  Route.get('estoque', 'EstoqueController.get');
+  
   /**** Empresas ****/
   Route.get('empresas', 'EmpresasController.get');
   Route.get('empresas/:id', 'EmpresasController.getID');
