@@ -1,3 +1,5 @@
+----------------------------- Registro ----------------------------
+
 {
     "colaborador": "Vitor Henrique Mariano da Costa",
     "setor": "Software",
@@ -11,4 +13,11 @@
     "estado": "SL",
     "cidade": "Perdida"
     "documento": "45681085644",
+}
+
+------------------------------- Login -------------------------------
+
+{
+    "email": "vitortecnologia@gamil.com",
+    "password": "vitorcosta"
 }

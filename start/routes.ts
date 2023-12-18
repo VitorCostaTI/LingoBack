@@ -50,6 +50,7 @@ Route.group(() => {
 
   /**** Estoque ****/
   Route.get('estoque', 'EstoqueController.get');
+  Route.post('estoque', 'EstoqueController.post');
   
   /**** Empresas ****/
   Route.get('empresas', 'EmpresasController.get');
