@@ -49,8 +49,8 @@ Route.group(() => {
   Route.delete('clientes', 'ClientesController.delete');
 
   /**** Estoque ****/
-  Route.get('estoque', 'EstoqueController.get');
-  Route.post('estoque', 'EstoqueController.post');
+  Route.get('estoque', 'EstoquesController.get');
+  Route.post('estoque', 'EstoquesController.post');
   
   /**** Empresas ****/
   Route.get('empresas', 'EmpresasController.get');
@@ -81,3 +81,5 @@ Route.group(() => {
   Route.delete('usuarios', 'UsuariosController.delete');
 
 }).prefix('/api').middleware('auth');
+
+Route.post('usuarios', 'UsuariosController.post');

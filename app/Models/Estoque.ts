@@ -12,8 +12,11 @@ export default class Estoque extends BaseModel {
   @column()
   public codigo_produto: string;
 
-  @belongsTo(() => Usuario)
-  public responsavel: BelongsTo<typeof Usuario>
+  @column({ columnName: 'usuario_id' })
+  public usuarioId: number
+
+  @belongsTo(() => Usuario, { foreignKey: 'usuario_id' })
+  public usuario: BelongsTo<typeof Usuario>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
