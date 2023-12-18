@@ -1,0 +1,14 @@
+{
+    "colaborador": "Vitor Henrique Mariano da Costa",
+    "setor": "Software",
+    "email": "vitortecnologia62@gmail.com",
+    "password": "vitorcosta",
+    "telefone1": "19999875946",
+    "telefone2": "19920007776",
+    "logradouro": "Rua esquina da quadra",
+    "cep":"13000-000",
+    "bairro": "JD Infinito",
+    "estado": "SL",
+    "cidade": "Perdida"
+    "documento": "45681085644",
+}
