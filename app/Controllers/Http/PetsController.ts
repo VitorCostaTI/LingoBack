@@ -66,8 +66,8 @@ export default class PetsController {
         const body = request.body();
 
         (await pet).pet = body.pet
-            (await pet).especie = body.especie
-                (await pet).raca = body.raca
+        (await pet).especie = body.especie
+        (await pet).raca = body.raca
 
         response.status(201);
         (await pet).save();

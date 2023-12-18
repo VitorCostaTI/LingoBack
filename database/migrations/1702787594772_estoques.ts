@@ -9,12 +9,13 @@ export default class extends BaseSchema {
 
       table.string('produto');
       table.string('codigo_produto');
+      table.string('categoria');
+      table.integer('quantidade');
       table.integer('usuario_id').unsigned().references('id').inTable('usuarios')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamp('data', { useTz: true })
     })
   }
 

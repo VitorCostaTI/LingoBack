@@ -1,11 +1,21 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
 import Auditoria from 'App/Models/Auditoria';
-import Estoque from 'App/Models/Estoque';
+import Estoque   from 'App/Models/Estoque';
+import Produto from 'App/Models/Produto';
 
 export default class EstoquesController {
-    public async get({ response }: HttpContextContract) {
+    public async get({ response, auth }: HttpContextContract) {
         try {
+
+            const auditoria = {
+                colaborador: `${auth.user!.colaborador}`,
+                setor: `${auth.user!.setor}`,
+                atividade: 'Consultou estoque',
+            };
+    
+            await Auditoria.create(auditoria);
+
             // Obtenha os registros brutos antes do preload
             const estoques = await Estoque.query()
 
@@ -35,11 +45,20 @@ export default class EstoquesController {
     public async post({ request, response, auth }: HttpContextContract) {
         const body = request.body();
 
+        const codigo_produto = request.input('codigo_produto');
+
+        const produtoEncontrado = await Produto.findByOrFail('codigo_produto', codigo_produto);
+        
         const auditoria = {
             colaborador: `${auth.user!.colaborador}`,
             setor: `${auth.user!.setor}`,
             atividade: `Registrou estoque: ${body.produto}`,
         };
+
+        body.codigo_produto = (await produtoEncontrado).codigo_produto
+        body.produto = (await produtoEncontrado).produto
+        body.categoria = (await produtoEncontrado).categoria
+        body.quantidade = (await produtoEncontrado).quantidade
 
         await Auditoria.create(auditoria);
 
@@ -48,7 +67,7 @@ export default class EstoquesController {
         response.status(201);
         return {
             msg: "Estoque registrado com sucesso",
-            // body
+            body
         }
     }
 }
