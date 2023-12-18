@@ -75,9 +75,8 @@ Route.group(() => {
   /**** Usuarios ****/
   Route.get('usuarios', 'UsuariosController.get');
   Route.get('usuarios/:id', 'UsuariosController.getID');
+  Route.post('usuarios', 'UsuariosController.post');
   Route.put('usuarios', 'UsuariosController.update');
   Route.delete('usuarios', 'UsuariosController.delete');
 
 }).prefix('/api').middleware('auth');
-
-Route.post('usuarios', 'UsuariosController.post');
