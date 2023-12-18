@@ -52,7 +52,7 @@ export default class EstoquesController {
         const auditoria = {
             colaborador: `${auth.user!.colaborador}`,
             setor: `${auth.user!.setor}`,
-            atividade: `Registrou estoque: ${body.produto}`,
+            atividade: `Registrou o produto: ${body.produto}`,
         };
 
         body.codigo_produto = (await produtoEncontrado).codigo_produto
