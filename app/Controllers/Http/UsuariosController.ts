@@ -135,7 +135,7 @@ export default class UsuariosController {
         response.status(201);
         return {
             msg: "Usuario adicionado com sucesso",
-            produto: body
+            usuario: body
         }
     }
 
@@ -252,7 +252,7 @@ export default class UsuariosController {
 
         return {
             msg: "Usuario atualizado com sucesso!",
-            usuario: body
+            usuario
         }
     }
 
