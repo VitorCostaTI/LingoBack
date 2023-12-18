@@ -2,7 +2,6 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Usuario from 'App/Models/Usuario';
 import Application from "@ioc:Adonis/Core/Application";
 import { v4 as uuidv4 } from 'uuid'
-import Auditoria from 'App/Models/Auditoria';
 
 export default class UsuariosController {
 
@@ -11,14 +10,6 @@ export default class UsuariosController {
     public async login({ auth, request, response }) {
         const email = request.input('email')
         const password = request.input('password')
-
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: `Conectou ao sistema`,
-        };
-
-        await Auditoria.create(auditoria);
 
         try {
             const token = await auth.use('api').attempt(email, password, {
@@ -31,14 +22,6 @@ export default class UsuariosController {
     }
 
     public async logout({ auth }) {
-
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: `Desconectou do sistema`,
-        };
-
-        await Auditoria.create(auditoria);
 
         await auth.use('api').revoke()
         return {
@@ -66,16 +49,8 @@ export default class UsuariosController {
         size: '2mb'
     }
 
-    public async post({ request, response, auth }: HttpContextContract) {
+    public async post({ request, response }: HttpContextContract) {
         const body = request.body();
-
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: `Cadastrou usuário: ${body.colaborador}`,
-        };
-
-        await Auditoria.create(auditoria);
 
         body.localizacao = body.bairro + ", " + body.cidade + " - " + body.estado
 
@@ -164,44 +139,22 @@ export default class UsuariosController {
         }
     }
 
-    public async get({ response, auth }: HttpContextContract) {
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: `Acessou Usuarios`,
-        };
+    public async get({ response }: HttpContextContract) {
 
-        await Auditoria.create(auditoria);
         response.status(200);
         return Usuario.all();
     }
 
-    public async getID({ params, response, auth }: HttpContextContract) {
+    public async getID({ params, response }: HttpContextContract) {
         const usuarios = Usuario.findOrFail(params.id);
-
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: `Acessou Usuario: ${(await usuarios).colaborador}`,
-        };
-
-        await Auditoria.create(auditoria);
 
         response.status(200);
         return usuarios;
     }
 
-    public async update({ params, response, request, auth }: HttpContextContract) {
+    public async update({ params, response, request }: HttpContextContract) {
         const usuario = Usuario.findOrFail(params.id);
         const body = request.body();
-
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: `Atualizou Usuario: ${(await usuario).colaborador}`,
-        };
-
-        await Auditoria.create(auditoria);
 
         /**** Ficha Cadastral ****/
 
@@ -303,16 +256,8 @@ export default class UsuariosController {
         }
     }
 
-    public async delete({ params, auth }: HttpContextContract) {
+    public async delete({ params }: HttpContextContract) {
         const usuario = await Usuario.findOrFail(params.id);
-
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: `Deletou Usuario: ${(await usuario).colaborador}`,
-        };
-
-        await Auditoria.create(auditoria);
 
         await usuario.delete();
 
