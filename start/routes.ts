@@ -82,4 +82,4 @@ Route.group(() => {
 
 }).prefix('/api').middleware('auth');
 
-Route.post('usuarios', 'UsuariosController.post');
+Route.post('usuarios', 'UsuariosController.post'); // Separado por praticidade de desenvolvimento
