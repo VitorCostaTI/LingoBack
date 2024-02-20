@@ -24,6 +24,7 @@ export default class extends BaseSchema {
       table.string('localizacao', 255).notNullable();
       table.string('emergencia', 255);
       table.string('documento', 255).notNullable();
+      table.string('pis', 255).notNullable();
       table.string('password', 180).notNullable();
       table.string('remember_me_token').nullable();
 

@@ -172,6 +172,7 @@ export default class UsuariosController {
         (await usuario).localizacao = body.bairro + ", " + body.cidade + " - " + body.estado;
         (await usuario).emergencia = body.emergencia;
         (await usuario).documento = body.documento;
+        (await usuario).pis = body.pis;
 
         /**** Anexo de Arquivo ****/
 

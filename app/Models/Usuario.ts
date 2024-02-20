@@ -51,6 +51,9 @@ export default class Usuario extends BaseModel {
   @column()
   public documento: string;
 
+  @column()
+  public pis: string;
+
   @column({ serializeAs: null })
   public password: string;
 
@@ -89,7 +92,7 @@ export default class Usuario extends BaseModel {
   public updatedAt: DateTime;
 
   @beforeSave()
-  public static async hashPassword (usuario: Usuario) {
+  public static async hashPassword(usuario: Usuario) {
     if (usuario.$dirty.password) {
       usuario.password = await Hash.make(usuario.password)
     }
