@@ -1,0 +1,14 @@
+{
+    "cliente": "Lorenzo Raimundo Leandro da Mota",
+    "email": "lorenzo_damota@huios.com.br",
+    "cpf": "455.817.170-60",
+    "telefone": "(12) 3579-9327",
+    "telefone2": "(12) 99508-4456",
+    "localizacao": "Jardim Jacinto, Jacareí -SP",
+    "logradouro": "Rua esquina da quadra",
+    "cep":"13000-000",
+    "bairro": "Jardim Jacinto",
+    "cidade": "Jacareí",
+    "estado": "SP",
+    "complemento": "Endereço Ficticio"
+  }
