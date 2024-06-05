@@ -10,13 +10,14 @@ export default class extends BaseSchema {
       table.string('cliente').notNullable().unique();
       table.string('cpf').notNullable().unique();
       table.string('email').notNullable().unique();
-      table.string('telefone1').notNullable().unique();
+      table.string('telefone').notNullable().unique();
       table.string('telefone2');
       table.string('cep').notNullable();
       table.string('logradouro').notNullable();
       table.string('bairro').notNullable();
       table.string('cidade').notNullable();
       table.string('estado').notNullable();
+      table.string('localizacao').notNullable();
       table.string('complemento');
 
       /**

@@ -12,6 +12,8 @@ export default class ClientesController {
             atividade: `Cadastrou cliente: ${body.cliente}`,
         };
 
+        body.localizacao = body.bairro + ", " + body.cidade + " - " + body.estado;
+
         await Auditoria.create(auditoria);
 
         await Cliente.create(body);
@@ -68,13 +70,14 @@ export default class ClientesController {
         (await cliente).cliente = body.cliente;
         (await cliente).cpf = body.cpf;
         (await cliente).email = body.email;
-        (await cliente).telefone1 = body.telefone1;
+        (await cliente).telefone = body.telefone1;
         (await cliente).telefone2 = body.telefone2;
         (await cliente).cep = body.cep;
         (await cliente).logradouro = body.logradouro;
         (await cliente).bairro = body.bairro;
         (await cliente).cidade = body.cidade;
         (await cliente).estado = body.estado;
+        (await cliente).localizacao = body.bairro + ", " + body.cidade + " - " + body.estado;
         (await cliente).complemento = body.complemento;
 
         (await cliente).save();

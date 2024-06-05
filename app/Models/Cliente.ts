@@ -15,7 +15,7 @@ export default class Cliente extends BaseModel {
   public email: string;
 
   @column()
-  public telefone1: string;
+  public telefone: string;
 
   @column()
   public telefone2: string;
@@ -34,6 +34,9 @@ export default class Cliente extends BaseModel {
 
   @column()
   public estado: string;
+
+  @column()
+  public localizacao: string;
 
   @column()
   public complemento: string;
