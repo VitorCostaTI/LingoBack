@@ -1,5 +1,3 @@
------------------------------ Registro ----------------------------
-
 {
     "colaborador": "Vitor Henrique Mariano da Costa",
     "setor": "Software",
@@ -7,18 +5,11 @@
     "password": "vitorcosta",
     "telefone1": "19999875946",
     "telefone2": "19920007776",
-    "cep":"13000-000",
+    "cep": "13000-000",
     "logradouro": "Rua esquina da quadra",
     "bairro": "JD Infinito",
     "cidade": "Perdida",
     "estado": "SL",
     "documento": "45681085644",
     "pis": "18236690828"
-}
-
-------------------------------- Login -------------------------------
-
-{
-    "email": "vitortecnologia62@gmail.com",
-    "password": "vitorcosta"
 }
