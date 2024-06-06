@@ -28,7 +28,7 @@ export default class EmpresasController {
         const auditoria = {
             colaborador: `${auth.user!.colaborador}`,
             setor: `${auth.user!.setor}`,
-            atividade: 'Cadastro Empresas',
+            atividade: 'Acesso Empresas',
         };
 
         await Auditoria.create(auditoria);
