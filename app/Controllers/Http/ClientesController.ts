@@ -1,111 +1,119 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Auditoria from 'App/Models/Auditoria';
 import Cliente from 'App/Models/Cliente';
+import ClienteValidator from 'App/Validators/ClienteValidator';
 
 export default class ClientesController {
     public async post({ request, response, auth }: HttpContextContract) {
-        const body = request.body();
+        try {
+            const body = request.body();
 
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: `Cadastrou cliente: ${body.cliente}`,
-        };
+            const cliente_validator = await request.validate(ClienteValidator);
 
-        body.localizacao = body.bairro + ", " + body.cidade + " - " + body.estado;
+            const auditoria = {
+                colaborador: `${auth.user!.colaborador}`,
+                setor: `${auth.user!.setor}`,
+                atividade: `Realizou cadastro do cliente: ${cliente_validator.cliente}`,
+            };
 
-        await Auditoria.create(auditoria);
+            await Auditoria.create(auditoria);
 
-        await Cliente.create(body);
+            await Cliente.create(body);
 
-        response.status(201);
-        return {
-            msg: "Cliente cadastrado com sucesso!",
-            cliente: body
+            response.status(201);
+            return {
+                msg: "Cliente cadastrado com sucesso!",
+                cliente_validator
+            }
+        } catch (error) {
+            response.status(500).json({ msg: 'Não foi possivel cadastrar cliente', err: error.messages || error })
         }
     }
 
     public async get({ response, auth }: HttpContextContract) {
+        try {
+            const auditoria = {
+                colaborador: `${auth.user!.colaborador}`,
+                setor: `${auth.user!.setor}`,
+                atividade: 'Buscou por clientes',
+            };
 
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: 'Acesso Clientes',
-        };
+            await Auditoria.create(auditoria);
 
-        await Auditoria.create(auditoria);
-
-        response.status(200);
-        return Cliente.all();
+            response.status(200);
+            return Cliente.all();
+        } catch (error) {
+            response.status(500).json({ msg: 'Não foi possivel buscar os clientes', err: error.message || error })
+        }
     }
 
     public async getID({ params, response, auth }: HttpContextContract) {
-        const cliente = Cliente.findOrFail(params.id);
+        try {
+            const cliente = Cliente.findOrFail(params.id);
 
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: `Acesso Cliente: ${(await cliente).cliente}`,
-        };
+            const auditoria = {
+                colaborador: `${auth.user!.colaborador}`,
+                setor: `${auth.user!.setor}`,
+                atividade: `Buscou pelo cliente: ${(await cliente).cliente}`,
+            };
 
-        await Auditoria.create(auditoria);
+            await Auditoria.create(auditoria);
 
-        response.status(200);
-        return cliente
+            response.status(200);
+            return cliente
+        } catch (error) {
+            response.status(500).json({ msg: 'Não foi possivel buscar o cliente', err: error.message || error })
+        }
     }
 
     public async update({ params, request, response, auth }: HttpContextContract) {
-        const cliente = Cliente.findOrFail(params.id);
+        try {
+            const cliente = Cliente.findOrFail(params.id);
 
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: `Atualizou Cliente: ${(await cliente).cliente}`,
-        };
+            const cliente_validator = await request.validate(ClienteValidator);
 
-        await Auditoria.create(auditoria);
+            const auditoria = {
+                colaborador: `${auth.user!.colaborador}`,
+                setor: `${auth.user!.setor}`,
+                atividade: `Atualizou o cliente: ${(await cliente).cliente}`,
+            };
 
-        const body = request.body();
+            await Auditoria.create(auditoria);
 
-        (await cliente).cliente = body.cliente;
-        (await cliente).cpf = body.cpf;
-        (await cliente).email = body.email;
-        (await cliente).telefone = body.telefone1;
-        (await cliente).telefone2 = body.telefone2;
-        (await cliente).cep = body.cep;
-        (await cliente).logradouro = body.logradouro;
-        (await cliente).bairro = body.bairro;
-        (await cliente).cidade = body.cidade;
-        (await cliente).estado = body.estado;
-        (await cliente).localizacao = body.bairro + ", " + body.cidade + " - " + body.estado;
-        (await cliente).complemento = body.complemento;
+            (await cliente).merge(cliente_validator);
 
-        (await cliente).save();
+            response.status(201);
 
-        response.status(201);
-
-        return {
-            msg: "Cliente atualizado com sucesso!",
-            cliente: body
+            return {
+                msg: "Cliente atualizado com sucesso!",
+                cliente
+            }
+        } catch (error) {
+            response.status(500).json({ msg: 'Não foi possivel atualizar o cliente', err: error.message || error })
         }
     }
 
     public async delete({ params, response, auth }: HttpContextContract) {
-        const cliente = Cliente.findOrFail(params.id);
+        try {
+            const cliente = Cliente.findOrFail(params.id);
 
-        const auditoria = {
-            colaborador: `${auth.user!.colaborador}`,
-            setor: `${auth.user!.setor}`,
-            atividade: `Deletou Cliente: ${(await cliente).cliente}`,
-        };
+            const auditoria = {
+                colaborador: `${auth.user!.colaborador}`,
+                setor: `${auth.user!.setor}`,
+                atividade: `Deletou Cliente: ${(await cliente).cliente}`,
+            };
 
-        await Auditoria.create(auditoria);
-        (await cliente).delete();
+            await Auditoria.create(auditoria);
+            (await cliente).delete();
 
-        response.status(201);
-        return {
-            msg: "Cliente deletado com sucesso!",
-            cliente
+            response.status(201);
+            return {
+                msg: "Cliente deletado com sucesso!",
+                cliente
+            }
+        } catch (error) {
+            response.status(500).json({ msg: 'Não foi possivel deletar o cliente', err: error.message || error })
+
         }
     }
 }

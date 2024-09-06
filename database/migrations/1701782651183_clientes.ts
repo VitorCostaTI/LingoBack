@@ -17,7 +17,6 @@ export default class extends BaseSchema {
       table.string('bairro').notNullable();
       table.string('cidade').notNullable();
       table.string('estado').notNullable();
-      table.string('localizacao').notNullable();
       table.string('complemento');
 
       /**
