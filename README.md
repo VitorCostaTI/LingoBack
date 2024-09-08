@@ -14,8 +14,6 @@ Este projeto é desenvolvido com [AdonisJS](https://github.com/adonisjs) versão
 
 ## Software.
 
-* A documentação deste projeto estará disponivel em outro [repositório](https://github.com/VitorCostaTI/LingoDocs), de meu perfil.
-
 * O Front End deste projeto está disponivel em outro [repositório](https://github.com/VitorCostaTI/LingoFront), de meu perfil.
 
 * Todos os dados aqui apresentados são meramente ilustrativos.
