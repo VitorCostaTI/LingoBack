@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Information</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: linear-gradient(90deg, #FFA500, #FF8C00);
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 1200px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h1 {
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      margin-bottom: 20px;
+    }
+
+    .info-box h2 {
+      font-size: 1.6rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .info-box p {
+      font-size: 1.2rem;
+      margin: 5px 0;
+      color: #555;
+    }
+
+    .info-box .status {
+      font-weight: bold;
+      color: #28A745;
+    }
+
+    .technologies {
+      margin-top: 20px;
+    }
+
+    .technologies h2 {
+      font-size: 1.6rem;
+      color: #007BFF;
+      margin-bottom: 10px;
+    }
+
+    .technologies ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .technologies li {
+      font-size: 1.2rem;
+      color: #555;
+      padding: 5px 0;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #333;
+      color: white;
+      margin-top: auto;
+    }
+
+    .swagger-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .swagger-link:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Lingo Server</h1>
+  </div>
+  <div class="container">
+    <h1>Bem-vindo ao servidor back-end Lingo Kennel - v1.0.0</h1>
+    <div class="info-box">
+      <h2>Status:</h2>
+      <p class="status"> Ativo </p>
+    </div>
+    <div class="info-box">
+      <h2>Tempo de atividade:</h2>
+      <p> 01:02:35 </p>
+    </div>
+    <div class="technologies">
+      <h2>Tecnologias Usadas:</h2>
+      <ul>
+        <li>AdonisJS</li>
+        <li>TypeScript</li>
+        <li>SQLite</li>
+        <li>Redis</li>
+        <li>Docker</li>
+      </ul>
+    </div>
+    <!-- <a class="swagger-link" href="/swagger" target="_blank">Ver Documentação da API</a> -->
+  </div>
+  <div class="footer">
+    <p>&copy; Desenvolvido por Vitor Costa</p>
+  </div>
+</body>
+
+</html>
