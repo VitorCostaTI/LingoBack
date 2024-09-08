@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Server Information</title>
+  <title>LingoServer Information</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
   <style>
     body {
@@ -89,6 +89,10 @@
       padding: 5px 0;
     }
 
+    .technologies .not-implemented {
+      color: #999;
+    }
+
     .footer {
       text-align: center;
       padding: 15px;
@@ -97,7 +101,7 @@
       margin-top: auto;
     }
 
-    .swagger-link {
+    /* .api-link {
       display: inline-block;
       margin-top: 20px;
       padding: 10px 20px;
@@ -108,9 +112,10 @@
       transition: background-color 0.3s;
     }
 
-    .swagger-link:hover {
+    .api-link:hover {
       background-color: #0056b3;
-    }
+    } */
+
   </style>
 </head>
 
@@ -122,11 +127,11 @@
     <h1>Bem-vindo ao servidor back-end Lingo Kennel - v1.0.0</h1>
     <div class="info-box">
       <h2>Status:</h2>
-      <p class="status"> Ativo </p>
+      <p class="status">Ativo</p>
     </div>
     <div class="info-box">
       <h2>Tempo de atividade:</h2>
-      <p> 01:02:35 </p>
+      <p id="uptimeDisplay">{{ uptime }}</p>
     </div>
     <div class="technologies">
       <h2>Tecnologias Usadas:</h2>
@@ -134,15 +139,36 @@
         <li>AdonisJS</li>
         <li>TypeScript</li>
         <li>SQLite</li>
-        <li>Redis</li>
-        <li>Docker</li>
+        <li class="not-implemented">Redis</li>
+        <li class="not-implemented">Docker</li>
       </ul>
     </div>
-    <!-- <a class="swagger-link" href="/swagger" target="_blank">Ver Documentação da API</a> -->
   </div>
   <div class="footer">
     <p>&copy; Desenvolvido por Vitor Costa</p>
   </div>
+
+  <script>
+    function formatUptime(seconds) {
+      const days = Math.floor(seconds / (3600 * 24));
+      seconds %= 3600 * 24;
+      const hours = Math.floor(seconds / 3600);
+      seconds %= 3600;
+      const minutes = Math.floor(seconds / 60);
+      seconds = Math.floor(seconds % 60);
+      return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    let uptimeSeconds = {{ uptimeSeconds }};
+
+    function updateUptime() {
+      document.getElementById('uptimeDisplay').textContent = formatUptime(uptimeSeconds);
+      uptimeSeconds++;
+    }
+
+    setInterval(updateUptime, 1000);
+    updateUptime();
+  </script>
 </body>
 
 </html>
